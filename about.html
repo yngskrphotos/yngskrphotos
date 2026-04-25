@@ -1,0 +1,126 @@
+<html>
+<head>
+    <title>About Me - yngskrphotos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav id="sidebar">
+        <ul>
+            <li class="logo"><img src="PT/logo.PNG" alt=""></li>
+            <li><a href="index.html"><i class="fa fa-home"></i> &nbsp; Home</a></li>
+            <li><a href="about.html"><i class="fa fa-users"></i> &nbsp; About Me</a></li>
+            <li><a href="portfolio.html"><i class="fa fa-picture-o"></i> &nbsp; Portfolio</a></li>
+            <li><a href="contact.html"><i class="fa fa-phone"></i> &nbsp; Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="wrapper">
+        <div class="about-hero">
+            <img src="PT/vb.jpg" alt="" class="hero-bg">
+            <div class="hero-overlay"></div>
+            <div class="about-hero-content">
+                <h1 class="reveal">ABOUT ME</h1>
+                <hr class="gold-line reveal">
+                <p class="hero-subtitle reveal">SATWAT RASIF</p>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <div class="about-left reveal">
+                <img src="PT/IMG_1900.jpg" alt="" class="about-img">
+                <img src="PT/vb.jpg" alt="" class="about-img">
+            </div>
+            <div class="about-middle reveal">
+                <h2>WHO AM I?</h2>
+                <p>Hi, I'm Satwat Rasif — a photographer with a passion for capturing moments that tell a story.</p>
+                <p>Photography, for me, is more than a hobby; it's how I see the world. I'm drawn to the way a single frame can freeze a feeling, a place, or a person in time, and I'm always looking for that perfect shot. I've been doing photography for just over 4 years, taking on knowledge from my father who is also a professional photographer and videographer.</p>
+                <p>Outside of photography, I'm a musician — I play guitar and sing, and I think that love of creativity bleeds naturally into my work behind the lens. I'm also a keen volleyball player for Dartford VC 2025/26 and Dartford Grammar 2024/25 and 2025/26 as well as being a Sea Cadet for just over 5 years, so I thrive in environments that demand focus, teamwork, and discipline. Additionally, I used to play many sports such as Rugby, Cricket and Football, which means I'm able to grab the shots needed in fast-paced games.</p>
+            </div>
+            <div class="about-right reveal">
+                <img src="PT/music1.jpg" alt="" class="about-img-grid">
+                <img src="PT/guitar.jpg" alt="" class="about-img-grid">
+                <img src="PT/dfd.jpg" alt="" class="about-img-grid">
+                <img src="PT/cadets.jpg" alt="" class="about-img-grid">
+            </div>
+        </div>
+
+        <div class="stats-strip reveal">
+            <div class="stat">
+                <h3 data-target="4+">4+</h3>
+                <p>YEARS EXPERIENCE</p>
+            </div>
+            <div class="stat">
+                <h3 data-target="5+">5+</h3>
+                <p>YEARS SEA CADETS</p>
+            </div>
+            <div class="stat">
+                <h3>∞</h3>
+                <p>PASSION FOR PHOTOGRAPHY</p>
+            </div>
+        </div>
+
+        <div class="socials">
+            <a href="https://www.instagram.com/yngskrphotos" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linktr.ee/skrphotography2010" target="_blank"><i class="fa fa-asterisk"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const btn = document.querySelector('.menu-btn');
+            const wrapper = document.querySelector('.wrapper');
+            nav.classList.toggle('open');
+            btn.classList.toggle('active');
+            wrapper.classList.toggle('open');
+        }
+
+        const hero = document.querySelector('.about-hero');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                hero.classList.add('shrink');
+            } else {
+                hero.classList.remove('shrink');
+            }
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('stats-strip')) {
+                        document.querySelectorAll('.stat h3').forEach(stat => {
+                            const original = stat.getAttribute('data-target');
+                            const target = parseInt(original);
+                            if (!target) return;
+                            const suffix = original.replace(/[0-9]/g, '');
+                            let count = 0;
+                            const step = Math.ceil(target / 60);
+                            stat.innerText = '0' + suffix;
+                            const counter = setInterval(() => {
+                                count += step;
+                                if (count >= target) {
+                                    count = target;
+                                    clearInterval(counter);
+                                }
+                                stat.innerText = count + suffix;
+                            }, 16);
+                        });
+                    }
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

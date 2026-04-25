@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>yngskrphotos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav id="sidebar">
+        <ul>
+            <li class="logo"><img src="PT/logo.PNG" alt=""></li>
+            <li><a href="index.html"><i class="fa fa-home"></i> &nbsp; Home</a></li>
+            <li><a href="about.html"><i class="fa fa-users"></i> &nbsp; About Me</a></li>
+            <li><a href="portfolio.html"><i class="fa fa-picture-o"></i> &nbsp; Portfolio</a></li>
+            <li><a href="contact.html"><i class="fa fa-phone"></i> &nbsp; Contact Me</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <div class="hero">
+            <img src="PT/main_banner.jpeg" alt="" class="hero-bg">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-left">
+                    <h1>SATWAT RASIF</h1>
+                    <hr class="gold-line">
+                    <p>PHOTOGRAPHER | VIDEOGRAPHER</p>
+                </div>
+            </div>
+            <div class="scroll-down">&#8964;</div>
+        </div>
+        <div class="socials">
+            <a href="https://www.instagram.com/yngskrphotos" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linktr.ee/skrphotography2010" target="_blank"><i class="fa fa-asterisk"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const btn = document.querySelector('.menu-btn');
+            const wrapper = document.querySelector('.wrapper');
+            nav.classList.toggle('open');
+            btn.classList.toggle('active');
+            wrapper.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
