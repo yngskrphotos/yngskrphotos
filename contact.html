@@ -1,0 +1,190 @@
+<html>
+<head>
+    <title>Contact - yngskrphotos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav id="sidebar">
+        <ul>
+            <li class="logo"><img src="logo.PNG" alt=""></li>
+            <li><a href="index.html"><i class="fa fa-home"></i> &nbsp; Home</a></li>
+            <li><a href="about.html"><i class="fa fa-users"></i> &nbsp; About Me</a></li>
+            <li><a href="portfolio.html"><i class="fa fa-picture-o"></i> &nbsp; Portfolio</a></li>
+            <li><a href="contact.html"><i class="fa fa-phone"></i> &nbsp; Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="wrapper">
+        <div class="contact-banner">
+            <img src="music1.jpg" alt="" class="hero-bg">
+            <div class="hero-overlay"></div>
+            <div class="contact-banner-content">
+                <h1 class="reveal">CONTACT ME</h1>
+                <hr class="gold-line reveal">
+                <p class="hero-subtitle reveal">LET'S WORK TOGETHER</p>
+            </div>
+        </div>
+
+        <div class="contact-hero">
+            <div class="contact-hero-content reveal">
+                <h1>GOT A PROJECT <span>IN MIND?</span></h1>
+                <p>I'd love to hear from you — fill in the form below or reach out directly.</p>
+            </div>
+        </div>
+
+        <div class="contact-body">
+            <div class="contact-left reveal">
+                <div class="contact-info-block">
+                    <i class="fa fa-envelope"></i>
+                    <div>
+                        <h4>EMAIL</h4>
+                        <p>rvphotography2010@outlook.com</p>
+                    </div>
+                </div>
+                <div class="contact-info-block">
+                    <i class="fa fa-instagram"></i>
+                    <div>
+                        <h4>INSTAGRAM</h4>
+                        <p>@yngskrphotos</p>
+                    </div>
+                </div>
+                <div class="contact-info-block">
+                    <i class="fa fa-map-marker"></i>
+                    <div>
+                        <h4>LOCATION</h4>
+                        <p>Dartford, UK</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-right reveal">
+                <div class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder=" ">
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder=" ">
+                            <label for="email">Your Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" placeholder=" ">
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="6" placeholder=" "></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button class="submit-btn" onclick="submitForm()">
+                        SEND MESSAGE <i class="fa fa-paper-plane"></i>
+                    </button>
+                    <div class="form-success" id="form-success">
+                        <i class="fa fa-check-circle"></i> Message sent successfully!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="socials">
+            <a href="https://www.instagram.com/yngskrphotos" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.linktr.ee/skrphotography2010" target="_blank"><i class="fa fa-asterisk"></i></a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init('5h5vo506PdYw9gh10');
+
+        window.onload = function() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('message').value = '';
+        };
+
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const btn = document.querySelector('.menu-btn');
+            const wrapper = document.querySelector('.wrapper');
+            nav.classList.toggle('open');
+            btn.classList.toggle('active');
+            wrapper.classList.toggle('open');
+        }
+
+        async function submitForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const btn = document.querySelector('.submit-btn');
+            btn.innerHTML = 'SENDING... <i class="fa fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                subject: subject || 'No subject',
+                message: message
+            };
+
+            try {
+                await emailjs.send(
+                    'service_s7q3tqs',
+                    'template_mpjwme6',
+                    templateParams
+                );
+
+                await emailjs.send(
+                    'service_s7q3tqs',
+                    'template_qyjqlvx',
+                    templateParams
+                );
+
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('subject').value = '';
+                document.getElementById('message').value = '';
+
+                document.getElementById('form-success').classList.add('visible');
+                setTimeout(() => {
+                    document.getElementById('form-success').classList.remove('visible');
+                }, 4000);
+
+            } catch (error) {
+                alert('Failed to send message. Please email me directly at rvphotography2010@outlook.com');
+                console.error('EmailJS error:', error);
+            } finally {
+                btn.innerHTML = 'SEND MESSAGE <i class="fa fa-paper-plane"></i>';
+                btn.disabled = false;
+            }
+        }
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
