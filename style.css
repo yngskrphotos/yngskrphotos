@@ -1073,3 +1073,102 @@ nav ul li a:hover:before {
         font-size: 38px;
     }
 }
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .hero-left h1 {
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .hero-left p {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .scroll-down {
+        font-size: 24px;
+    }
+
+    .about-section {
+        padding: 30px 15px;
+        gap: 25px;
+    }
+
+    .about-img {
+        height: 200px;
+    }
+
+    .about-img-grid {
+        height: 160px;
+    }
+
+    .about-middle h2 {
+        font-size: 22px;
+    }
+
+    .about-middle p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .portfolio-section {
+        padding: 30px 10px;
+    }
+
+    .carousel-img {
+        height: 180px;
+    }
+
+    .section-title {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .contact-hero {
+        padding: 50px 20px;
+        min-height: 25vh;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 28px;
+    }
+
+    .contact-body {
+        padding: 30px 15px;
+        gap: 30px;
+    }
+
+    .contact-info-block i {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+
+    .socials {
+        padding: 30px 20px;
+    }
+
+    .stats-strip {
+        padding: 20px 15px;
+    }
+}
+
+@supports (padding: max(0px)) {
+    .wrapper {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .menu-btn {
+        top: max(20px, env(safe-area-inset-top));
+        left: max(20px, env(safe-area-inset-left));
+    }
+}
